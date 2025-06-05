@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <div class="nav-wrapper">
+      <nav id="desktop-nav">
+        <div class="logo"><a href="#profile">Smriti Sunil</a></div>
+        <div>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    
+      <nav id="hamburger-nav">
+        <div class="logo">
+          <a href="#profile">Smriti Sunil</a>
+        </div>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#education" onclick="toggleMenu()">Education</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+            <li><a href="#achievements" onclick="toggleMenu()">Achievements</a></li>
+            <li><a href="#certifications" onclick="toggleMenu()">Certifications</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+          </div>
+        </div>
+      </nav>
+    </div>
+    
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/home_main.png" alt="Smriti profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Smriti Sunil</h1>
+        <p class="section__text__p2">
+          <span id="typing-text"></span><span class="cursor">_</span>
+        </p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./assets/Smriti_Resume.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://www.linkedin.com/in/smritisunil/ '"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/smritisss '"
+          />
+        </div>
+      </div>
+    </section>
+    <script>
+      const phrases = ["Data Analyst", "Web Developer", "Problem Solver", "AI Enthusiast", "Curious Learner"];
+      const typingElement = document.getElementById("typing-text");
+    
+      let currentPhraseIndex = 0;
+      let currentCharIndex = 0;
+      let isDeleting = false;
+    
+      function typeEffect() {
+        const currentPhrase = phrases[currentPhraseIndex];
+    
+        if (isDeleting) {
+          typingElement.textContent = currentPhrase.substring(0, currentCharIndex - 1);
+          currentCharIndex--;
+    
+          if (currentCharIndex === 0) {
+            isDeleting = false;
+            currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+          }
+    
+          setTimeout(typeEffect, 100); // Deleting speed
+        } else {
+          typingElement.textContent = currentPhrase.substring(0, currentCharIndex + 1);
+          currentCharIndex++;
+    
+          if (currentCharIndex === currentPhrase.length) {
+            // Pause before deleting
+            setTimeout(() => {
+              isDeleting = true;
+              typeEffect();
+            }, 700); // Pause at end of phrase
+          } else {
+            setTimeout(typeEffect, 100); // Typing speed
+          }
+        }
+      }
+    
+      typeEffect();
+    </script>
+    
+
+    <section id="about">
+      <div class="about-container">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="./assets/about_pic1.png"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="text-container">
+            <p> 
+              Hi, I’m Smriti — a data enthusiast passionate about uncovering patterns, solving problems, and turning raw data into impactful insights. I’ve worked hands-on with Python, SQL, Power BI, and Tableau to analyze large datasets, build dashboards, and drive data-informed decisions across academic and professional settings. I love connecting data to real-world outcomes, whether it’s optimizing campaigns, improving workflows, or understanding user behavior. Alongside tech, I enjoy leading creative initiatives — from organizing campus events to managing student-led marketing and community-building initiatives. I thrive where analytics meets creativity and am always eager to learn, adapt, and create meaningful impact through technology.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="education">
+      <p class="section__text__p1">Learn more about my</p>
+      <h1 class="title">Education</h1>
+      <div class="education-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <img src="./assets/utd_logo.png" alt="UTD Logo" class="university-logo" />
+            <h2 class="education-sub-title">The University of Texas at Dallas</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/check_point.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>MS in Computer Science</h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/check_point.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Data Science Track</h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/check_point.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Sem 1 GPA: 3.667</h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/check_point.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Relavant Coursework</h3>
+                  <p>Database Design, Statistics for Data Science, Machine Learning, Big Data Management and Analytics</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <img src="./assets/dbit_logo.png" alt="DBIT Logo" class="university-logo" />
+            <h2 class="education-sub-title">University of Mumbai</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/check_point.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>BE in Computer Engineering</h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/check_point.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Honors in Data Science</h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/check_point.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>CGPA:3.87</h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/check_point.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Relavant Coursework</h3>
+                  <p>Python Programming, Data Structures and Algorithms, Data Warehousing and Mining, NLP, Aritficial Intelligence</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container">
+        <div class="experience-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Data & Web Analyst Intern</h2>
+
+            <h3 class="job-title">ITECH Digital Forensics PVT LTD</h3>
+            <p class="company-location">Mumbai, India</p>
+            <p class="timeline">June 2022 – August 2022</p>
+            
+            <ul class="experience-bullets">
+              <li>Analyzed web traffic using Google Analytics & SQL to optimize client targeting.</li>
+              <li>Built Tableau dashboards for 50+ products to visualize engagement and demo interest.</li>
+              <li>Assisted AWS migration, optimizing DBs and reducing page load time by 2.4s.</li>
+              <li>Enhanced UI using HTML, CSS & Bootstrap, leading to a 40% rise in brochure downloads.</li>
+              <li>Delivered weekly insights that helped increase lead response rate by 25%.</li>
+            </ul>
+          </div>
+          <div class="experience__pic-container">
+            <img
+              src="./assets/experience_main.png"
+              alt="Profile picture"
+              class="about-pic"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="projects" class="section">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="project-grid">
+      
+        <div class="project-card" data-category="data">
+          <div class="card-front">
+            <img src="assets/project-1.png" alt="Project 1">
+            <h3>Job Market Analytics & Salary Trend Visualization</h3>
+            <p class="short-summary">A data-driven platform analyzing over 10,000 job postings to identify skill demands, salary benchmarks, and regional trends.</p>
+            <p1 class="skills">Skills Used: #Python #SQL #Sckit-Learn #PowerBI</p1>
+            <button class="project-btn front-btn">More</button>
+          </div>
+          <div class="card-back">
+          <ul>
+            <li><strong>Objective:</strong> Objective: Designed a platform to analyze 10,000+ job postings to identify skill demands, salary benchmarks, and regional trends for aspiring data analysts.</li>
+            <li><strong>Key Achievements:</strong>
+          <ul>
+            <li>Performed data cleaning, preprocessing, and exploratory analysis using Python (Pandas, NumPy) and SQL.</li>
+            <li>Built Scikit-learn models to forecast salary ranges with 85% accuracy.</li>
+            <li>Created Power BI dashboards to visualize in-demand skills, salary distributions, and job density by region.</li>
+            <li>Improved job match recommendations by 30% and helped data-driven decision-making for job seekers.</li>
+          </ul>
+          </li>
+          </ul>
+            <button class="project-btn back-btn">Back</button>
+          </div>
+        </div>
+  
+        <div class="project-card" data-category="data">
+          <div class="card-front">
+            <img src="assets/project-2.png" alt="Project 2">
+            <h3>Movie Recommendation System</h3>
+            <p class="short-summary">A personalized movie recommendation system based on user preferences using NLP techniques and machine learning.
+            </p>
+            <p1 class="skills">Skills Used: #Python #SQL #NLP #ETL #Tableau #Machine Learning</p1>
+            <button class="project-btn front-btn">More</button>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Objective:</strong> Developed a personalized movie recommendation system using NLP techniques and machine learning.</li>
+              <li><strong>Key Achievements:</strong>
+            <ul>
+              <li>Applied TF-IDF vectorization and cosine similarity to compute relevance scores between movies based on genres, descriptions, and user interests.</li>
+              <li>Cleaned and analyzed 50,000+ movie records using SQL and Pandas, integrating metadata and user reviews.</li>
+              <li>Created a Tableau dashboard to visualize genre trends, user behavior, and recommendation results.</li>
+              <li>Increased recommendation precision by 15%, driving better alignment with user preferences and improved engagement during pilot testing.</li>
+            </ul>
+            </li>
+            </ul>
+            <button class="project-btn back-btn">Back</button>
+          </div>
+        </div>
+    
+        <div class="project-card" data-category="data">
+          <div class="card-front">
+            <img src="assets/project-3.png" alt="Project 3">
+            <h3>FortiShare</h3>
+            <p class="short-summary">A secure cloud file sharing system that detects intrusions, focusing on XSS attacks and optimizing encrypted file transfers.</p>
+            <p1 class="skills">Skills Used: #MongoDB GridFS #Python #NodeJS #HTML #PHP</p1>
+            <button class="project-btn front-btn">More</button>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Objective:</strong>Designed a secure cloud file-sharing system for detecting XSS attacks and optimizing encrypted file transfers.</li>
+              <li><strong>Key Achievements:</strong>
+            <ul>
+              <li>Built a CNN-based model that classified malicious activity with 98.5% accuracy.</li>
+              <li>Analyzed 5,000+ file access logs and improved encryption efficiency for different file types and sizes.</li>
+              <li>Integrated Python and MongoDB GridFS to manage encrypted transfers and identify abnormal access behavior.</li>
+              <li>Enhanced early threat detection and system resilience through advanced feature extraction and model predictions.</li>
+            </ul>
+            </li>
+            </ul>
+            <button class="project-btn back-btn">Back</button>
+          </div>
+        </div>
+  
+        <div class="project-card" data-category="data">
+          <div class="card-front">
+            <img src="assets/project-4.png" alt="Project 4">
+            <h3>A/B Testing & Marketing Analytics Dashboard</h3>
+            <p class="short-summary">Analyzed A/B test results and developed a Power BI dashboard to optimize marketing strategies and campaign performance.</p>
+            <p1 class="skills">Skills Used: #SQL #Python #Power BI #Excel</p1>
+            <button class="project-btn front-btn">More</button>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Objective:</strong>Optimized event strategies for the ACM student chapter using A/B testing insights and visual performance tracking to improve outreach and engagement.</li>
+              <li><strong>Key Achievements:</strong>
+            <ul>
+              <li>Conducted A/B testing with t-tests and chi-square tests using SQL and Python for statistically valid campaign comparisons.</li>
+              <li>Built a Power BI dashboard showcasing KPIs, event trends, and conversion rate visualizations.</li>
+              <li>Improved email open rates and event sign-ups by 15% through better timing and message targeting.</li>
+              <li>Enabled data-driven decision-making for future campaign strategies and event planning.</li>
+            </ul>
+            </li>
+            </ul>
+            <button class="project-btn back-btn">Back</button>
+          </div>
+        </div>
+  
+        <div class="project-card" data-category="data">
+          <div class="card-front">
+            <img src="assets/project-5.png" alt="Project 5">
+            <h3>Mushroom Classification System</h3>
+            <p class="short-summary">Built a machine learning model to classify mushrooms as edible or poisonous using Decision Tree, Random Forest, and K-Nearest Neighbors algorithms.</p>
+            <p1 class="skills">Skills Used: #Python #Scikit-learn #Decision Tree #Random Forest #KNN, #Data Preprocessing</p1>
+            <button class="project-btn front-btn">More</button>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Objective:</strong>Built a classification system to determine whether a mushroom is edible or poisonous using a dataset of 20 categorical features.</li>
+              <li><strong>Key Achievements:</strong>
+            <ul>
+              <li>Trained and evaluated Decision Tree, Random Forest, and KNN models with cross-validation and hyperparameter tuning.</li>
+              <li>Achieved 99.98% accuracy with KNN; selected Random Forest for deployment due to better efficiency and generalization.</li>
+              <li>Preprocessed data by encoding categorical features, handling missing values, and splitting features/labels for model training.</li>
+              <li>Delivered a highly accurate model to assist in food safety assessments through reliable mushroom classification.</li>
+            </ul>
+            </li>
+            </ul>
+            <button class="project-btn back-btn">Back</button>
+          </div>
+        </div>    
+    
+        <div class="project-card" data-category="web">
+          <div class="card-front">
+            <img src="assets/project-6.png" alt="Project 6">
+            <h3>SafeU</h3>
+            <p class="short-summary">An SOS emergency application designed to instantly alert loved ones in times of danger, enhancing personal safety, especially for women.</p>
+            <p1 class="skills">Skills Used: #Android Development #Java #Maps API #Messaging API #Git/GitHub #Figma</p1>
+            <button class="project-btn front-btn">More</button>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Objective:</strong>SafeU is an emergency SOS app that instantly alerts loved ones with an SOS message and live location, ensuring quick help during emergencies.</li>
+              <li><strong>Key Achievements:</strong>
+            <ul>
+              <li>Implemented one-tap SOS alerts with automated messaging and live location using the Google Maps API.</li>
+              <li>Enabled continuous real-time location sharing as the user moves during emergencies.</li>
+              <li>Integrated automatic audio recording from the moment the SOS is triggered until it's turned off, capturing surrounding sounds for added security.</li>
+              <li>Designed a customizable message system with multilingual support and a responsive contact management module for quick access.</li>
+            </ul>
+            </li>
+            </ul>
+            <button class="project-btn back-btn">Back</button>
+          </div>
+        </div>
+    
+        <div class="project-card" data-category="web">
+          <div class="card-front">
+            <img src="assets/project-7.jpg" alt="Project 7">
+            <h3>Static Code Analyzer</h3>
+            <p class="short-summary">A tool for performing static code analysis, detecting defects, bugs, and inefficiencies in Python code using machine learning classification methods.</p>
+            <p1 class="skills">Skills Used: #Python #MySQL #Machine Learning (KNN, Naive Bayes, Decision Trees)</p1>
+            <button class="project-btn front-btn">More</button>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Objective:</strong>The Static Code Analyzer improves Python code quality by detecting errors, inefficiencies, and bad practices through static analysis and machine learning-based classification.</li>
+              <li><strong>Key Achievements:</strong>
+            <ul>
+              <li>Developed a Python-based tool to classify code as “well-written” or “poorly written” using KNN, Naive Bayes, and Decision Trees.</li>
+              <li>Integrated real-time syntax and optimization feedback to help developers improve code instantly.</li>
+              <li>Leveraged static code metrics (e.g., readability, structure) to enhance analysis accuracy.</li>
+              <li>Built a MySQL-backed training dataset to support continuous learning and reliable classification.</li>
+            </ul>
+            </li>
+            </ul>
+            <button class="project-btn back-btn">Back</button>
+          </div>
+        </div>
+       
+      </div>
+    </section>
+    <script>
+      // Flip project cards on click
+      document.querySelectorAll(".project-btn").forEach((button) => {
+        button.addEventListener("click", function() {
+          const card = this.closest('.project-card'); 
+          card.classList.toggle("flipped");
+        });
+      });
+    </script>
+
+    <section id="skills">
+      <p class="section_skills">Explore My</p>
+      <h1 class="title">Skills</h1>
+      
+      <div class="skills-container">
+        <!-- Left Scroll Button -->
+        <button class="scroll-button left" onclick="scrollSkills('left')">&#8592;</button>
+      
+        <!-- Skills List with Horizontal Scrolling -->
+        <div class="skills-details-container">
+          <div class="skills-row">
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/python.png" alt="Python Logo" class="skill-icon" />
+                <span>Python</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/r.png" alt="R Logo" class="skill-icon" />
+                <span>R Programming</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/Scikit_learn_logo.png" alt="Scikit-learn Logo" class="skill-icon" />
+                <span>Scikit-learn</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/spark-logo.png" alt="Spark Logo" class="skill-icon" />
+                <span>Apache Spark</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/mysql-database.png" alt="SQL Logo" class="skill-icon" />
+                <span>MySQL</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/mongodb-logo.png" alt="MongoDB Logo" class="skill-icon" />
+                <span>MongoDB</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/google_bigquery_logo.png" alt="BigQuery Logo" class="skill-icon" />
+                <span>Google BigQuery</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/Tableau-logo.png" alt="Tableau Logo" class="skill-icon" />
+                <span>Tableau</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/Power-BI-Logo.png" alt="Power BI Logo" class="skill-icon" />
+                <span>Power BI</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/matplotlib-logo.png" alt="Matplotlib Logo" class="skill-icon" />
+                <span>Matplotlib</span>
+              </div>
+            </div>
+          </div>
+    
+          <div class="skills-row">
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/C_Programming_Language.png" alt="C Logo" class="skill-icon" />
+                <span>C Programming</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/html.png" alt="HTML Logo" class="skill-icon" />
+                <span>HTML</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/css-3.png" alt="CSS Logo" class="skill-icon" />
+                <span>CSS</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/JavaScript-Logo.png" alt="Javascript Logo" class="skill-icon" />
+                <span>Javascript</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/PHP-logo.png" alt="PHP Logo" class="skill-icon" />
+                <span>PHP</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/ms-office-logo.png" alt="MS Office Logo" class="skill-icon" />
+                <span>MS Office</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/Git-logo.png" alt="Git Logo" class="skill-icon" />
+                <span>Git</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/scrum-logo.png" alt="Scrum Logo" class="skill-icon" />
+                <span>Scrum</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/ml-logo.png" alt="ML Logo" class="skill-icon" />
+                <span>Machine Learning</span>
+              </div>
+            </div>
+            <div class="expertise-card">
+              <div class="skill-content">
+                <img src="./assets/stats-logo.png" alt="Statistics Logo" class="skill-icon" />
+                <span>Statistics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Right Scroll Button -->
+        <button class="scroll-button right" onclick="scrollSkills('right')">&#8594;</button>
+      </div>
+    </section>
+    
+    <script>
+      function scrollSkills(direction) {
+        const container = document.querySelector('#skills .skills-details-container');
+        const scrollAmount = 350; // Adjust the scroll amount here
+      
+        if (direction === 'left') {
+          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      }
+    </script>
+
+
+    
+<section id="achievements">
+  <p class="section__text__p1">Discover My</p>
+  <h1 class="title">Achievements</h1>
+
+  <div class="achievements-container">
+  <div class="milestone-grid">
+    <div class="milestone-card">
+      <img src="./assets/ieee-logo.png" alt="Trophy Icon" class="milestone-icon" />
+      <h3>Research Publication</h3>
+      <p class="milestone-sub">FortiShare: Predictive Cloud File Sharing October 2023 | ICAST Conference</p>
+      <p1>Co-authored a research paper on intrusion detection in cloud sharing systems, published in IEEE-indexed ICAST 2023, Mumbai.</p1>
+    </div>
+
+    <div class="milestone-card">
+      <img src="./assets/wehack-logo.png" alt="Hackathon Icon" class="milestone-icon" />
+      <h3>Hackathon: WEHack UTD</h3>
+      <p class="milestone-sub">ChronoRoam – Travel Sharing Platform March 2025 | WEHack UTD</p>
+      <p1>Built an AI-ready itinerary planning app using MERN stack + speech-to-text, focused on authentic and community-driven travel.</p1>
+    </div>
+
+    <div class="milestone-card">
+      <img src="./assets/gmis-logo.png" alt="Conference Icon" class="milestone-icon" />
+      <h3>Conference Delegate</h3>
+      <p class="milestone-sub">STEM Leadership & Outreach October 2024 | GMIS Conference</p>
+      <p1>Led circuit-building sessions, supported logistics, and engaged with astronaut José Hernández as part of the GMIS delegation.</p1>
+    </div>
+
+    <div class="milestone-card">
+      <img src="./assets/utd_logo.png" alt="Assistant Icon" class="milestone-icon" />
+      <h3>Student Assistant – The Jonsson School</h3>
+      <p class="milestone-sub">Spring 2025 | UTD</p>
+      <p1>Supported professional development initiatives at the Jonsson School’s Professional Success Center.</p1>
+    </div>
+
+    <div class="milestone-card">
+      <img src="./assets/acm-logo.png" alt="ACM Icon" class="milestone-icon" />
+      <h3>Leadership</h3>
+      <p class="milestone-sub">2021–2024 | ACM DBIT</p>
+      <p1>Led strategic communications, event publicity, and social media outreach. Mentored junior members and expanded reach.</p1>
+    </div>
+
+    <div class="milestone-card">
+      <img src="./assets/dbit-logo.png" alt="Volunteer Icon" class="milestone-icon" />
+      <h3>Volunteer Contributions</h3>
+      <p class="milestone-sub">2021–2022 | IEEE, NSS, DBIT</p>
+      <p1>Supported tech, cultural, and outreach events through roles in IEEE-GRSS programs, NSS activities, sponsorships and college fests.</p1>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <p class="section_certifications center-text">View My</p>
+  <h1 class="title">Certifications</h1>
+
+  <div class="cert-card-grid">
+    <div class="cert-card">
+      <img src="./assets/certifications.png" alt="Certification Icon" class="cert-icon" />
+      <h3 class="cert-title">Introduction to R</h3>
+      <p class="cert-provider">Great Learning</p>
+      <p class="cert-date">Oct 2023</p>
+    </div>
+    <div class="cert-card">
+      <img src="./assets/certifications.png" alt="Certification Icon" class="cert-icon" />
+      <h3 class="cert-title">Data Visualization in Power BI</h3>
+      <p class="cert-provider">DataCamp</p>
+      <p class="cert-date">Sep 2024</p>
+    </div>
+    <div class="cert-card">
+      <img src="./assets/certifications.png" alt="Certification Icon" class="cert-icon" />
+      <h3 class="cert-title">SQL for Data Science</h3>
+      <p class="cert-provider">Great Learning</p>
+      <p class="cert-date">April 2022</p>
+    </div>
+    <div class="cert-card">
+      <img src="./assets/certifications.png" alt="Certification Icon" class="cert-icon" />
+      <h3 class="cert-title">Scrum Certified Fundamentals</h3>
+      <p class="cert-provider">SCRUMStudy - Accreditation body for Scrum and Agile</p>
+      <p class="cert-date">Sep 2022</p>
+    </div>
+    <div class="cert-card">
+      <img src="./assets/certifications.png" alt="Certification Icon" class="cert-icon" />
+      <h3 class="cert-title">Google Data Analytics</h3>
+      <p class="cert-provider">Coursera</p>
+      <p class="cert-date">Jan 2025</p>
+    </div>
+    <div class="cert-card">
+      <img src="./assets/certifications.png" alt="Certification Icon" class="cert-icon" />
+      <h3 class="cert-title">IBM Data Science</h3>
+      <p class="cert-provider">Coursera</p>
+      <p class="cert-date">Oct 2024</p>
+    </div>
+  </div>
+
+</section>
+
+
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:smritisunil17@gmail.com">smritisunil17@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com/in/smritisunil/">LinkedIn</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/github.png"
+            alt="GitHub icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://github.com/smritisss" target="_blank">GitHub</a></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>Copyright &#169; 2025 Smriti Sunil. All Rights Reserved.</p>
+      <p>Favicon made by 
+        <a href="https://www.flaticon.com/free-icons/point" title="point icons" target="_blank" rel="noopener noreferrer">
+          Point icons created by Freepik - Flaticon
+        </a>
+      </p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
