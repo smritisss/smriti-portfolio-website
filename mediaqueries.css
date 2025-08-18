@@ -1,205 +1,593 @@
+/* ===========================
+   mediaqueries.css (fixed)
+   Breakpoints:
+   - ≤1400px  : large laptop
+   - ≤1200px  : small laptop / landscape tablet
+   - ≤992px   : tablet
+   - ≤600px   : mobile
+   =========================== */
+
+
+html { -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: hidden; }
+
+/* ---------- Large laptop (≤1400px) ---------- */
 @media screen and (max-width: 1400px) {
-  #profile {
-    height: 83vh;
-    margin-bottom: 6rem;
-  }
-  .about-containers {
-    flex-wrap: wrap;
-  }
-  #contact,
-  #projects {
-    height: fit-content;
-  }
-  section {
-    padding: 0 4rem; /* add this */
-  }
+  #profile { height: 83vh; margin-bottom: 6rem; }
+  .about-containers { flex-wrap: wrap; }
+  #contact, #projects { height: fit-content; }
+  section { padding: 0 4rem; }
 }
 
+/* ---------- Small laptop (≤1200px) ---------- */
 @media screen and (max-width: 1200px) {
-  #desktop-nav {
-    display: none;
-  }
-  #hamburger-nav {
-    display: flex;
-  }
-  #experience,
-  .experience-details-container {
-    margin-top: 2rem;
-  }
-  #profile,
-  .section-container {
-    display: block;
-  }
-  .arrow {
-    display: none;
-  }
-  section,
-  .section-container {
-    height: fit-content;
-  }
-  section {
-    padding: 0 3rem;
-  }
+  #desktop-nav { display: none; }
+  #hamburger-nav { display: flex; }
+
+  #experience, .experience-details-container { margin-top: 2rem; }
+  #profile, .section-container { display: block; }
+  .arrow { display: none; }
+  section, .section-container { height: fit-content; }
+  section { padding: 0 3rem; }
+
   .section__pic-container {
-    width: 275px;
-    height: 275px;
-    margin: 0 auto 2rem;
+    width: 275px; height: 275px; margin: 0 auto 2rem;
   }
-  .about-containers {
-    margin-top: 0;
+  .about-containers { margin-top: 0; }
+
+  /* Projects: drop to 2 columns earlier */
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 22px;
   }
 }
 
-@media screen and (max-width: 600px) {
-  /* NAVIGATION */
-  #desktop-nav {
-    display: none;
-  }
+/* ---------- Tablet (≤992px) ---------- */
+/* ===================== Tablet (≤ 992px) ===================== */
+@media screen and (max-width: 992px) {
+
+    /* NAVIGATION */
+  #desktop-nav { display: none; }
 
   #hamburger-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 9vh;
-    padding: 0 2rem;
-    background-color: #0f041e;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 9vh; padding: 0 1rem; background-color: #0f041e;
+    position: fixed; left: 0; right: 0; width: 100%;
+    z-index: 1000; box-sizing: border-box;
+  }
+  #hamburger-nav .logo { flex: 1 1 auto; }
+  #hamburger-nav .hamburger-menu { flex: 0 0 auto; margin-left: auto; }
+  .hamburger-icon { margin-left: .5rem; }
+
+  /* Keep dropdown fully inside viewport */
+  .menu-links{
+    position: fixed; left: 0; right: 0; top: 9vh;
+    width: 100%; text-align: center;
+    background-color: rgb(216, 168, 240);
+    max-height: 0; overflow: hidden; z-index: 1200;
+    transition: max-height .3s ease-in-out;
+  }
+  .menu-links.open{ max-height: 80vh; overflow-y: auto; }
+  .menu-links a{ display: block; padding: 12px 16px; }
+
+  /* Kill horizontal scroll on tiny screens */
+  html, body { overflow-x: hidden; }
+  body { background-attachment: scroll; }
+  
+  /* General section sizing */
+  section { padding: 4rem 1.5rem; }
+
+  .title { font-size: 2.4rem; }
+  .section__text__p2 { font-size: 1.25rem; }
+
+
+  
+
+  /* ABOUT */
+  .section-container { flex-direction: column; gap: 2rem; height: auto; }
+  .about-containers, .about-details-container { flex-direction: column; }
+  .section__pic-container { width: 340px; height: 340px; margin: 0 auto; }
+
+  /* ===== EDUCATION & EXPERIENCE (center, fit) ===== */
+  #education .education-details-container,
+  #experience .experience-details-container {
+    width: 90%;
+    max-width: 920px;         /* keep inside viewport */
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 0.5rem;
   }
 
-  .menu-links {
-    width: 100%;
-    text-align: center;
-    background-color: rgb(216, 168, 240);
+  #education .details-container,
+  #experience .details-container {
+    width: 92% !important;    /* avoid touching edges */
+    max-width: 720px;
+    margin: 0 auto 1.25rem;
+    height: auto;             /* no fixed height squeeze */
   }
+
+  .experience__pic-container { width: 420px; height: 420px; margin: 0 auto; }
+
+  /* ===== PROJECTS (2-up; no overlap with button) ===== */
+  #projects { margin-bottom: 2rem; }
+
+.project-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 0.5rem;
+}
+
+/* Turn off 3D/absolute layout on tablet */
+.project-card{
+  perspective: none !important;
+  transform-style: flat !important;
+  position: relative;
+  height: auto !important;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;            /* keep rounded corners clean */
+}
+
+/* Make each face flow normally (no overlap) */
+.project-card .card-front,
+.project-card .card-back{
+  position: relative !important;
+  width: 100%;
+  height: auto !important;
+  min-height: 0;
+  transform: none !important;
+  backface-visibility: visible !important;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  background: #fff;
+}
+
+/* Show only one face at a time */
+.project-card .card-back{ display: none; }
+.project-card.flipped .card-front{ display: none; }
+.project-card.flipped .card-back{ display: block; }
+
+/* Media sizing */
+.project-card .card-front img,
+.project-card .card-back img{
+  width: 100%;
+  height: 180px;               /* was causing overflow; keep it modest */
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Button should sit in normal flow under text */
+.project-btn{
+  position: static !important;
+  transform: none !important;
+  width: 100%;
+  height: 2.75rem;
+  margin-top: .75rem;
+}
+
+  /* ===== SKILLS (horizontal scroll like laptop) ===== */
+ #skills { 
+  padding-left: 20px; 
+  padding-right: 20px; 
+  box-sizing: border-box; 
+}
+
+/* Turn the whole list into a 2-column grid */
+#skills .skills-details-container{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 300px)); /* 2 per row */
+  gap: 16px;                                       /* row + column gap */
+  overflow: visible;
+  padding: 0;
+  gap: 16px;
+  justify-content: center;   /* center the grid itself */
+  align-items: center;       /* vertical alignment if needed */
+
+}
+
+/* Flatten wrappers so children sit in the grid directly */
+#skills .skills-row{
+  display: contents;
+  padding: 0;
+  gap: 0;
+  white-space: normal;
+}
+
+/* Card sizing inside the grid */
+#skills .expertise-card{
+  width: 90%;
+  min-width: 0;
+  height: 70px;
+  padding: 16px;
+}
+
+#skills .skill-icon { width: 44px; height: 44px; }
+#skills .scroll-button { display: none !important; }
+
+  /* ===== ACHIEVEMENTS & CERTIFICATIONS (2 per row) ===== */
+  .milestone-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  #certifications .cert-card-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* two equal columns */
+  gap: 16px;                                        /* space between cards */
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+#certifications .cert-card {
+  width: auto !important;        /* override desktop width: 290px */
+  max-width: none !important;
+  margin: 0;                     /* let grid handle spacing */
+  padding: 1.1rem;               /* slightly tighter padding */
+  box-sizing: border-box;
+  font-size: 0.9rem;
+}
+
+/* Trim inner text sizes a bit so everything fits */
+#certifications .cert-title   { font-size: 1.05rem; }
+#certifications .cert-provider,
+#certifications .cert-date    { font-size: 0.9rem; }
+#certifications .cert-icon    { width: 60px; height: 74px; }
+
+/* Remove the hover "lift" on tablet to prevent row overlap */
+@media (hover: none) and (pointer: coarse) {
+  #certifications .cert-card:hover { transform: none; }
+}
+}
+/* ---------- Mobile (≤600px) ---------- */
+@media screen and (max-width: 600px) {
+
+  
+  .title {
+  font-size: 2rem !important;
+  line-height: 1.15;
+  margin: 0 0 0.75rem !important;  /* space below the title */
+  text-align: center;
+}
+
+/* Same spacing for the small subtitle line (e.g., "Explore My") */
+.section__text__p2 {
+  margin: 0 0 0.5rem !important;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+  /* NAVIGATION */
+  #desktop-nav { display: none; }
+
+  #hamburger-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 9vh; padding: 0 1rem; background-color: #0f041e;
+    position: fixed; left: 0; right: 0; width: 100%;
+    z-index: 1000; box-sizing: border-box;
+  }
+  #hamburger-nav .logo { flex: 1 1 auto; }
+  #hamburger-nav .hamburger-menu { flex: 0 0 auto; margin-left: auto; }
+  .hamburger-icon { margin-left: .5rem; }
+
+  /* Keep dropdown fully inside viewport */
+  .menu-links{
+    position: fixed; left: 0; right: 0; top: 9vh;
+    width: 100%; text-align: center;
+    background-color: rgb(216, 168, 240);
+    max-height: 0; overflow: hidden; z-index: 1200;
+    transition: max-height .3s ease-in-out;
+  }
+  .menu-links.open{ max-height: 80vh; overflow-y: auto; }
+  .menu-links a{ display: block; padding: 12px 16px; }
+
+  /* Kill horizontal scroll on tiny screens */
+  html, body { overflow-x: hidden; }
+  body { background-attachment: scroll; }
 
   /* SECTION GENERAL */
-  section {
-    padding: 2rem 1rem;
-    flex-direction: column;
-  }
+  section { padding: 3rem 1.25rem; flex-direction: column; }
+  .title { font-size: 2rem; }
+  .section__text__p2 { font-size: 1.1rem; }
 
   .section-container,
   .about-containers,
   .about-details-container,
   .experience-containers {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
-  .section__pic-container,
-  .experience__pic-container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
+  .section__pic-container {
+    width: 100%; height: auto; display: flex; justify-content: center;
   }
+  .section__pic-container img { width: 90%; height: auto; }
 
-  .section__pic-container img,
-  .experience__pic-container img {
-    width: 90%;
-    height: auto;
-  }
-
-  .details-container {
-    width: 100% !important;
-  }
+  .details-container { width: 100% !important; box-sizing: border-box; }
 
   /* PROFILE */
   #profile {
-    flex-direction: column;
-    height: auto;
-    padding-top: 120px;
-    gap: 2rem;
+    flex-direction: column; height: auto; padding-top: 120px; gap: 1.5rem;
+  }
+  .btn-container { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .btn { width: 100%; padding: 0.9rem; }
+
+  /* ABOUT */
+  #about .text-container p {
+    font-size: 0.95rem; line-height: 1.6; text-align: center !important;
   }
 
-  .btn-container {
-    flex-direction: column;
+  /* EDUCATION (keep icon + text on same line) */
+  /*#education .details-container { max-width: 100% !important; margin: 0 auto; }*/
+/* EDUCATION — match Experience card sizing on mobile */
+#education { 
+  padding-left: 1rem; 
+  padding-right: 1rem;               /* same section side padding */
+}
+
+#education .education-details-container{
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  padding: 0 !important;             /* match exp wrapper */
+}
+
+#education .details-container{
+  width: 100% !important;             /* SAME as experience */
+  max-width: 600px;
+  margin: 1rem auto !important;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2rem;               /* same rounded look */
+}
+
+/* bullets/content inside the card like Experience */
+#education .article-container{
+  width: 100%;
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: left;
+}
+  #education .article-container article{
+    display: flex; flex-direction: row !important; align-items: flex-start;
+    gap: 0.5rem; width: 100%;
+  }
+  #education article .icon{ height: 1.1rem; flex: 0 0 auto; margin-top: .2rem; }
+  #education .article-container article h3 { font-size: 0.95rem; }
+  #education .article-container article p { font-size: 0.85rem; }
+  .education-sub-title { font-size: 1.4rem; }
+  .university-logo { height: 48px; }
+
+  
+/* EXPERIENCE — hide side image */
+.experience__pic-container { 
+  display: none !important; 
+}
+
+/* EXPERIENCE section container */
+#experience { 
+  padding-left: 1rem; 
+  padding-right: 1rem; 
+}
+
+/* Experience card container wrapper */
+#experience .experience-containers {
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  gap: 1.5rem; 
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 !important;
+}
+
+/* Individual card (same width as Education) */
+#experience .details-container {
+  width: 100% !important;        /* match Education box */
+  max-width: 600px;             /* cap width like Education */
+  margin: 1rem auto !important; /* center it */
+  padding: 1.5rem;
+  box-sizing: border-box;
+  height: auto;
+  text-align: center;           /* center titles inside */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title + company + location + timeline centered */
+#experience .details-container h3,
+#experience .details-container h4,
+#experience .details-container p {
+  text-align: center;
+}
+
+/* Bullet points readable (left aligned inside card) */
+#experience .details-container ul {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+/* Font sizes */
+.job-title { font-size: 1rem; }
+.experience-sub-title { font-size: 1.2rem; }
+.company-location, .timeline { font-size: 0.9rem; }
+.experience-bullets { font-size: 0.9rem; }
+
+  
+
+/* PROJECTS — single column, single visible card surface on mobile */
+#projects { margin-bottom: 1.75rem; }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  padding: 0;
+}
+
+/* Outer wrapper becomes transparent so only one card surface shows */
+.project-card{
+  perspective: none !important;
+  position: relative;         /* flow normally */
+  height: auto !important;
+  min-height: 0;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 !important;      /* remove inner padding that caused layering */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Use ONE visible surface (front/back) styled as the card */
+.project-card .card-front,
+.project-card .card-back{
+  position: relative !important;
+  width: 100%;
+  height: auto !important;
+  min-height: 0;
+  transform: none !important;
+  backface-visibility: visible !important;
+
+  /* single card look */
+  background: rgb(252, 246, 255);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  overflow: hidden;            /* clip rounded corners for image */
+  margin: 0 auto 16px;         /* spacing between cards */
+}
+
+/* Show only one face at a time (no overlap) */
+.project-card .card-back{ display: none; }
+.project-card.flipped .card-front{ display: none; }
+.project-card.flipped .card-back{ display: block; }
+
+/* Image sizing inside the single surface */
+.project-card .card-front img,
+.project-card .card-back img{
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Buttons flow in normal document flow */
+.project-btn{
+  position: static !important;
+  transform: none !important;
+  width: 100%;
+  height: 2.75rem;
+  margin-top: .75rem;
+}
+
+.card-back ul { font-size: 0.85rem; }
+
+
+  /* SKILLS — stack vertically and ensure spacing from Projects */
+  #skills { padding-top: 1rem; margin-top: 1rem; clear: both; }
+  #skills .skills-details-container { overflow-x: visible; padding: 0; }
+  #skills .skills-row{
+    display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+  }
+ /* #skills .expertise-card{
+    min-width: 0; width: 95%; max-width: 520px;
+    height: 50px; padding: 20px; margin: 0 auto;
+  }*/
+  #skills {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#skills .skills-details-container,
+#skills .skills-row {
+  width: 100%;
+  max-width: 560px;              /* column width cap */
+  margin-left: auto !important;  /* center the column */
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box;
+}
+
+#skills .expertise-card {
+  width: 100% !important;        /* card fills the centered column */
+  margin: 0 !important;          /* no side offset */
+}
+  
+  #skills .skill-icon { width: 36px; height: 36px; }
+  #skills .skill-content span { font-size: 0.99rem; }
+  #skills .scroll-button { display: none !important; }
+
+   #skills .skills-details-container{
+    display: block;           /* stop horizontal flex strip from tablet */
+    overflow-x: visible;
+    overflow-y: visible;
+    padding: 0;
   }
 
-  /* EDUCATION */
-  #education .education-details-container {
-    padding: 0 1rem;
+  #skills .skills-row{
+    display: flex;
+    flex-direction: column;   /* stack vertically */
+    gap: .75rem;
   }
 
-  #education .details-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box;
+  #skills .expertise-card{
+    flex: 0 1 auto;           /* undo tablet's 0 0 220px */
+    width: 95%;
+    max-width: 560px;
+    height: 50px;             /* back to your mobile height */
+    padding: 16px;
+    margin: 0 auto;
   }
 
-  #education .article-container {
-    width: 100%;
-  }
+  /* ACHIEVEMENTS / CERTIFICATIONS */
+  .milestone-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .cert-card { width: 100%; padding: 1.25rem; }
+  .cert-icon { width: 58px; height: 72px; }
 
-  #education .article-container article {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
-  }
+  #certifications .cert-card-grid{
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  padding: 0 12px;
+}
 
-  #education .article-container article h3,
-  #education .article-container article p {
-    font-size: 0.85rem;
-  }
-
-  .education-sub-title {
-    font-size: 1.4rem;
-  }
-
-  .university-logo {
-    height: 50px;
-  }
-
-  /* PROJECTS */
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card {
-    max-width: 100%;
-    min-height: 470px;
-  }
-
-  /* SKILLS */
-  #skills .skills-details-container {
-    overflow-x: auto;
-    padding: 0.5rem;
-  }
-
-  #skills .scroll-button {
-    display: none;
-  }
-
-  .skills-row {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-
-  /* ACHIEVEMENTS */
-  .milestone-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* CERTIFICATIONS */
-  .cert-card {
-    width: 100%;
-  }
+#certifications .cert-card{
+  width: 100% !important;
+  max-width: 520px !important;  /* optional cap */
+  margin: 0 auto !important;
+}
+  
 
   /* CONTACT */
   .contact-info-upper-container {
-    flex-direction: column;
-    padding: 1rem;
+    flex-direction: column; align-items: stretch; padding: 0.75rem;
   }
-
-  .contact-info-container p {
-    font-size: 1rem;
-  }
+  .contact-info-container p { font-size: 1rem; }
+  .email-icon { height: 2rem; }
+  .icon.contact-icon { height: 1.6rem; }
 
   /* FOOTER */
-  footer {
-    padding: 1rem;
-    height: auto;
-  }
+  footer { padding: 1.25rem 0 2rem 0; height: auto; }
+}
+
+/* ---------- Ultra-small (≤380px) ---------- */
+@media (max-width: 380px) {
+  .logo a { font-size: 1.2rem; }
+  .title { font-size: 1.8rem; }
+  .section__pic-container { width: 220px; height: 220px; }
+  .project-card .card-front img { height: 140px; }
 }

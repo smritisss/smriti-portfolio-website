@@ -1,4 +1,6 @@
 /* GENERAL */
+/*html { -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: hidden; }*/
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
@@ -489,15 +491,15 @@ section {
 
 #experience .experience-containers {
   display: flex;
-  justify-content: center;     
-  align-items: center;         
-  gap: 4rem;                  
-  flex-wrap: wrap;   
-  margin-top: 0;   
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-       
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;                     /* not needed here, parent has gap */
+  flex-wrap: nowrap;
+  margin-top: 0;
+  max-width: none;
+  margin: 0;                  /* parent centers */
+  padding: 0;
+  flex: 1 1 520px;            /* take half row, wrap at ~520px */
 }
 
 .experience-sub-title {
@@ -511,19 +513,34 @@ section {
 .experience-details-container {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-wrap: wrap;            /* allow 2-up layout */
+  gap: 1.5rem;
+  margin-top: 2rem                  /* space between cards */
 }
 
 #experience .details-container {
-  background: rgb(252, 246, 255); /* already set */
+  background: rgb(252, 246, 255);
   border-radius: 2rem;
   padding: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255,255,255,0.1);
   transition: all 0.3s ease-in-out;
   transform: translateY(0);
-  width: 45%;
-  max-width: 510px; 
-  height: 400px;
+  width: 100%;                /* fill the flex item */
+  max-width: 510px;           /* cap card width */
+  box-sizing: border-box;
+}
+
+.itech-logo {
+  display: block;
+  margin: 0 auto 1rem auto; /* center image + spacing below */
+  height: 60px; /* adjust as needed */
+  object-fit: contain;
+  filter: brightness(0) invert(0); 
+}
+#experience .details-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 35px rgba(93, 54, 141, 0.7); /* stronger glow on hover */
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 #experience .article-container {
@@ -566,13 +583,6 @@ section {
   cursor: default;    
 }
 
-.experience__pic-container{
-    display: flex;
-    height: 500px;
-    width: 500px;
-    margin: auto 0;
-    
-}
 article {
   display: flex;
   width: 100%;
@@ -596,7 +606,7 @@ article {
   list-style-type: disc;
   padding-left: 1.2rem;
   margin-top: 0.8rem;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   line-height: 1.5;
   text-align: left;
 }
